@@ -17,9 +17,19 @@ export default function Pagination({ page, lastPage, setPage }) {
   return (
     <div className="flex justify-center py-3">
       <div className="join">
-        <button onClick={handlePrevPage} className="join-item btn">«</button>
+        {
+          page <= 1 ?
+            <button onClick={handlePrevPage} disabled className="join-item btn">«</button>
+            :
+            <button onClick={handlePrevPage} className="join-item btn">«</button>
+        }
         <button className="join-item btn">{page} of {lastPage}</button>
-        <button onClick={handleNextPage} className="join-item btn">»</button>
+        {
+          page >= lastPage ?
+            <button onClick={handleNextPage} disabled className="join-item btn">»</button>
+            :
+            <button onClick={handleNextPage} className="join-item btn">»</button>
+        }
       </div>
     </div>
   )
