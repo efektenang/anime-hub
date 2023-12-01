@@ -1,9 +1,9 @@
 import AnimeList from "@/components/AnimeList";
 import { HeaderList } from "@/components/HeaderList";
+import { getAnimeResponse } from "./libs/api-libs";
 
 export default async function Home() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=8`)
-  const topAnime = await response.json()
+  const topAnime = await getAnimeResponse('top/anime', 'limit=8')
   return (
     <div>
       <HeaderList title='Paling Populer' link='/populer' linkTitle='Lihat semua' />
