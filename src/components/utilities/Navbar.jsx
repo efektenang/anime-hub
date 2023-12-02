@@ -6,10 +6,10 @@ import Search from "./Search"
 
 export default function Navbar() {
     return (
-        <div className="sticky top-0 navbar bg-cyan-700 text-white z-50">
+        <div className="sticky top-0 navbar bg-cyan-700 z-50">
             <div className="navbar-start">
             <div className="dropdown">
-                <label tabIndex={0} className="btn btn-ghost btn-circle">
+                <label tabIndex={0} className="btn btn-ghost btn-circle text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
                 </label>
                 <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -20,9 +20,9 @@ export default function Navbar() {
             </div>
             </div>
             <div className="navbar-center">
-                <Link href='/' className="btn btn-ghost text-xl">Anime Hub</Link>
+                <Link href='/' className="btn btn-ghost text-xl text-white">Anime Hub</Link>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end text-white">
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle">
                         <div className="indicator">
