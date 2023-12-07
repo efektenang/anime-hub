@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function AnimeList({api}) {
     return (
-        <div className="grid xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
+        <div className="grid xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 mx-3">
             {api.data?.map((anime, index) => {
                 return (
                 <Link href={`/populer/${anime.mal_id}`} className="cursor-pointer" key={index}>
