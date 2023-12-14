@@ -26,7 +26,7 @@ const UserAction = async () => {
             tabIndex={0}
             className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-white text-black rounded-box w-52">
             <li>
-              <Link href='/profile' className="justify-between">Profile</Link>
+              <Link href='/user/profile' className="justify-between">Profile</Link>
             </li>
             <li>
               <a>Settings</a>
