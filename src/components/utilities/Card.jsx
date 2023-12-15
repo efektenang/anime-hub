@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import VideoPlayer from "./VideoPlayer";
+import { BookmarkSimple } from '@phosphor-icons/react'
 
 export const Card = ({ api }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +28,7 @@ export const Card = ({ api }) => {
               ⭐ {api.data.score}
             </div>
             <div className="badge badge-error m-1 py-2">{api.data.rating}</div>
+            <button onClick={() => alert('Berhasil menambahkan!')} className="mx-2"><BookmarkSimple size={30} color="#e6c700" weight="bold" /></button>
           </div>
           <p>{api.data.synopsis}</p>
           <div className="card-actions justify-end">
