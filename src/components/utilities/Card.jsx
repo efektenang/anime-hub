@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import VideoPlayer from "./VideoPlayer";
-import { BookmarkSimple } from '@phosphor-icons/react'
+import CollectionButton from "../CollectionButton";
 
-export const Card = ({ api }) => {
+export const Card = ({ api, animeId, user_email, collection }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const videoHandler = () => {
@@ -28,7 +28,19 @@ export const Card = ({ api }) => {
               ⭐ {api.data.score}
             </div>
             <div className="badge badge-error m-1 py-2">{api.data.rating}</div>
-            <button onClick={() => alert('Berhasil menambahkan!')} className="mx-2"><BookmarkSimple size={30} color="#e6c700" weight="bold" /></button>
+            {animeId == collection?.mal_id ? (
+              <CollectionButton
+                mal_id={animeId}
+                user_email={user_email}
+                isCollection={true}
+              />
+            ) : (
+              <CollectionButton
+                mal_id={animeId}
+                user_email={user_email}
+                isCollection={false}
+              />
+            )}
           </div>
           <p>{api.data.synopsis}</p>
           <div className="card-actions justify-end">
