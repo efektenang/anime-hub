@@ -10,6 +10,7 @@ const CollectionButton = ({ mal_id, user_email, isCollection }) => {
     e.preventDefault();
 
     const data = { mal_id, user_email };
+    if (data.user_email == undefined) return alert("Anda harus Login terlebih dahulu!");
 
     const response = await fetch("/api/v1/collection", {
       method: "POST",
@@ -24,16 +25,17 @@ const CollectionButton = ({ mal_id, user_email, isCollection }) => {
 
   const deleteHandle = async (e) => {
     e.preventDefault();
-    
-    const data = { mal_id, user_email };
 
-    const deleteCollection = await fetch("/api/v1/delete-collection", {
-      method: "POST",
+    const data = { mal_id, user_email };
+    if (data.user_email == undefined) return alert("Anda harus Login terlebih dahulu!");
+
+    const deleteCollection = await fetch("/api/v1/collection", {
+      method: "DELETE",
       body: JSON.stringify(data),
     });
-      
-      if (deleteCollection) {
-        setIsCollect(false)
+
+    if (deleteCollection) {
+      setIsCollect(false);
     }
 
     return;

@@ -28,7 +28,7 @@ export const Card = ({ api, animeId, user_email, collection }) => {
               ⭐ {api.data.score}
             </div>
             <div className="badge badge-error m-1 py-2">{api.data.rating}</div>
-            {animeId == collection?.mal_id ? (
+            {animeId == collection?.mal_id && user_email ? (
               <CollectionButton
                 mal_id={animeId}
                 user_email={user_email}
