@@ -10,16 +10,17 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
 model User {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   email String
 }
 
 model Collection {
-  id         String @id @default(auto()) @map("_id") @db.ObjectId
-  mal_id     String
-  user_email String
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  mal_id      String
+  user_email  String
+  title_anime String?
+  img_src     String?
 
   @@unique([user_email, mal_id])
 }

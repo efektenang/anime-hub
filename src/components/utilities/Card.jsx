@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import VideoPlayer from "./VideoPlayer";
 import CollectionButton from "../CollectionButton";
 
-export const Card = ({ api, animeId, user_email, collection }) => {
+export const Card = ({ animeId, api, user_email, collection }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const videoHandler = () => {
@@ -32,12 +32,16 @@ export const Card = ({ api, animeId, user_email, collection }) => {
               <CollectionButton
                 mal_id={animeId}
                 user_email={user_email}
+                title_anime={api.data.title}
+                img_src={api.data.images.webp.image_url}
                 isCollection={true}
               />
             ) : (
               <CollectionButton
                 mal_id={animeId}
                 user_email={user_email}
+                title_anime={api.data.title}
+                img_src={api.data.images.webp.image_url}
                 isCollection={false}
               />
             )}

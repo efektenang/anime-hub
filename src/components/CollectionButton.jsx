@@ -3,13 +3,13 @@
 import { BookmarkSimple } from "@phosphor-icons/react";
 import { useState } from "react";
 
-const CollectionButton = ({ mal_id, user_email, isCollection }) => {
+const CollectionButton = ({ mal_id, user_email, title_anime, img_src, isCollection }) => {
   const [isCollect, setIsCollect] = useState(isCollection);
 
   const addHandle = async (e) => {
     e.preventDefault();
 
-    const data = { mal_id, user_email };
+    const data = { mal_id, user_email, title_anime, img_src };
     if (data.user_email == undefined) return alert("Anda harus Login terlebih dahulu!");
 
     const response = await fetch("/api/v1/collection", {

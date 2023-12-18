@@ -1,8 +1,20 @@
+import { authUserSession } from "@/libs/auth-libs";
 import prisma from "@/libs/prisma"
 
+export async function GET() {
+    const user = await authUserSession();
+    const result = await prisma.collection.findMany({
+      where: { user_email: user.email },
+    });
+
+    return Response.json({
+       result
+    })
+}
+
 export async function POST(request) {
-    const { mal_id, user_email } = await request.json()
-    const data = { mal_id, user_email }
+    const { mal_id, user_email, title_anime, img_src } = await request.json()
+    const data = { mal_id, user_email, title_anime, img_src }
     
     const createCollection = await prisma.collection.create({ data })
     
