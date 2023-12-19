@@ -14,9 +14,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
       <body className={inter.className}>
-        <Navbar />
-        {children}
-        <Footer />
+        <div className='flex flex-col h-screen justify-between'>
+          <Navbar />
+          <div className="mb-auto">
+            {children}
+          </div>
+          <Footer />
+        </div>
       </body>
     </html>
   )
