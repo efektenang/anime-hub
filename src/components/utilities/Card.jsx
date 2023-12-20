@@ -28,23 +28,13 @@ export const Card = ({ animeId, api, user_email, collection }) => {
               ⭐ {api.data.score}
             </div>
             <div className="badge badge-error m-1 py-2">{api.data.rating}</div>
-            {animeId == collection?.mal_id && user_email ? (
-              <CollectionButton
-                mal_id={animeId}
-                user_email={user_email}
-                title_anime={api.data.title}
-                img_src={api.data.images.webp.image_url}
-                isCollection={true}
-              />
-            ) : (
-              <CollectionButton
-                mal_id={animeId}
-                user_email={user_email}
-                title_anime={api.data.title}
-                img_src={api.data.images.webp.image_url}
-                isCollection={false}
-              />
-            )}
+            <CollectionButton
+              mal_id={animeId}
+              user_email={user_email}
+              title_anime={api.data.title}
+              img_src={api.data.images.webp.image_url}
+              isCollection={animeId == collection?.mal_id && user_email ? true : false}
+            />
           </div>
           <p>{api.data.synopsis}</p>
           <div className="card-actions justify-end">

@@ -1,10 +1,12 @@
 "use client";
 
 import { BookmarkSimple } from "@phosphor-icons/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const CollectionButton = ({ mal_id, user_email, title_anime, img_src, isCollection }) => {
   const [isCollect, setIsCollect] = useState(isCollection);
+  const router = useRouter()
 
   const addHandle = async (e) => {
     e.preventDefault();
@@ -19,6 +21,7 @@ const CollectionButton = ({ mal_id, user_email, title_anime, img_src, isCollecti
 
     if (response) {
       setIsCollect(true);
+      router.refresh()
     }
     return;
   };
@@ -36,6 +39,7 @@ const CollectionButton = ({ mal_id, user_email, title_anime, img_src, isCollecti
 
     if (deleteCollection) {
       setIsCollect(false);
+      router.refresh()
     }
 
     return;
