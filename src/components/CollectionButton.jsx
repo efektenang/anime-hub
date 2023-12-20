@@ -23,7 +23,7 @@ const CollectionButton = ({ mal_id, user_email, title_anime, img_src, isCollecti
       setIsCollect(true);
       router.refresh()
     }
-    return;
+    return alert('Berhasil menambahkan ke koleksi!')
   };
 
   const deleteHandle = async (e) => {

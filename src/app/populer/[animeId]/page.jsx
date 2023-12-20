@@ -7,7 +7,7 @@ export default async function Details({ params: { animeId } }) {
   const anime = await getAnimeResponse(`anime/${animeId}`)
   const user = await authUserSession()
   const collection = await prisma.collection.findFirst({
-    where: { mal_id: animeId }
+    where: { mal_id: animeId, user_email: user?.email }
   })
   
   return (

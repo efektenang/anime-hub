@@ -33,7 +33,7 @@ export const Card = ({ animeId, api, user_email, collection }) => {
               user_email={user_email}
               title_anime={api.data.title}
               img_src={api.data.images.webp.image_url}
-              isCollection={animeId == collection?.mal_id && user_email ? true : false}
+              isCollection={ collection ? true : false}
             />
           </div>
           <p>{api.data.synopsis}</p>
