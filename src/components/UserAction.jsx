@@ -1,12 +1,16 @@
-import { authUserSession } from "@/libs/auth-libs";
+// import { authUserSession } from "@/libs/auth-libs";
+'use client'
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
-const UserAction = async () => {
-  const user = await authUserSession();
+const UserAction = () => {
+  // const user = await authUserSession();
+  const { data: session, status } = useSession()
+  
   return (
     <div>
-      {!user ? (
-        <Link href="/api/auth/signin" className="btn btn-sm btn-success">
+      {!session ? (
+        <Link href="/auth/login" className="btn btn-sm btn-warning text-black hover:bg-white hover:text-yellow-600">
           Sign In
         </Link>
       ) : (
@@ -18,7 +22,7 @@ const UserAction = async () => {
             <div className="w-10 rounded-full">
               <img
                 alt="Tailwind CSS Navbar component"
-                src={user.image}
+                src={session?.user.image}
               />
             </div>
           </div>

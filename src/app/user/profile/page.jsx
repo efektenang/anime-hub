@@ -1,13 +1,18 @@
-import { authUserSession } from "@/libs/auth-libs";
-import React from "react";
+'use client'
 
-export default async function Profile() {
-  const user = await authUserSession();
+import { useSession } from "next-auth/react";
+// import { authUserSession } from "@/libs/auth-libs";
+
+
+export default function Profile() {
+  // const user = await authUserSession();
+  const { data: session, status } = useSession()
+  
   return (
     <div>
       <div className="card lg:card-side bg-base-100 shadow-xl m-4">
         <figure>
-          <img src={user.image} alt="Profile Image" />
+          <img src={session?.user.image} alt="Profile Image" />
         </figure>
         <div className="card-body">
           <h1 className="card-title">Profile Settings</h1>
@@ -17,7 +22,7 @@ export default async function Profile() {
             </div>
             <input
               type="text"
-              value={user.name}
+              value={session?.user.name}
               className="input input-bordered w-full max-w-sm"
               disabled
             />
@@ -28,7 +33,7 @@ export default async function Profile() {
             </div>
             <input
               type="text"
-              value={user.email}
+              value={session?.user.email}
               className="input input-bordered w-full max-w-sm"
               disabled
             />

@@ -2,19 +2,37 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import Link from "next/link"
+import Loading from "@/app/loading";
 
 export default function Login() {
+  const {status} = useSession()
   const router = useRouter();
   const [data, setData] = useState({
     email: "",
     password: "",
   });
 
+  if (status === 'loading') return <Loading />
+
+  if (status === 'authenticated') {
+    router.push('/')
+  }
+
   const loginUser = async (e) => {
     e.preventDefault();
-    signIn("credentials");
-    router.push('/')
+    signIn("credentials", {
+      ...data,
+      redirect: false
+    })
+      .then(({ ok, error }) => {
+        if (ok) {
+          router.push('/')
+        } else {
+          return alert('Email atau password salah!')
+        }
+      });
   };
   return (
     <section className="bg-gray-50 dark:bg-gray-800">
@@ -41,7 +59,7 @@ export default function Login() {
                   onChange={(e) => {
                     setData({ ...data, email: e.target.value });
                   }}
-                  required=""
+                  required
                 />
               </div>
               <div>
@@ -60,31 +78,8 @@ export default function Login() {
                   onChange={(e) => {
                     setData({ ...data, password: e.target.value });
                   }}
-                  required=""
+                  required
                 />
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="remember"
-                      aria-describedby="remember"
-                      type="checkbox"
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300600"
-                      required=""
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor="remember" className="text-gray-500">
-                      Remember me
-                    </label>
-                  </div>
-                </div>
-                <a
-                  href="#"
-                  className="text-sm font-medium text-primary-600 hover:underline">
-                  Forgot password?
-                </a>
               </div>
               <button
                 type="submit"
@@ -93,11 +88,11 @@ export default function Login() {
               </button>
               <p className="text-sm font-light text-gray-500">
                 Don’t have an account yet?{" "}
-                <a
-                  href="#"
+                <Link
+                  href="/auth/register"
                   className="font-medium text-primary-600 hover:underline">
                   Sign up
-                </a>
+                </Link>
               </p>
             </form>
             <div className="divider">OR</div>
