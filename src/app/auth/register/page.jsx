@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Link from 'next/link'
+import Link from "next/link";
 
 export default function Register() {
   const router = useRouter();
@@ -14,16 +14,19 @@ export default function Register() {
 
   const registerUser = async (e) => {
     e.preventDefault();
-    const response = await fetch("/api/register", {
+    await fetch("/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
+    }).then(({ ok, err }) => {
+      if (ok) {
+        router.push("/auth/login");
+      } else {
+        return alert("Email pengguna sudah dipakai!");
+      }
     });
-
-    const userInfo = await response.json();
-    router.push("/auth/login");
   };
   return (
     <div>

@@ -21,10 +21,12 @@ export async function POST(request) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10)
+    const dateNow = new Date()
+    const gmt7 = new Date(dateNow.getTime() + (7 * 60 * 60 * 1000))
 
     const user = await prisma.user.create({
         data: {
-            name, email, hashedPassword
+            name, email, hashedPassword, createdAt: gmt7, updatedAt: gmt7
         }
     })
 

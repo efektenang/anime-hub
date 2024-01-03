@@ -44,6 +44,8 @@ model User {
   hashedPassword String?
   emailVerified  DateTime?
   image          String?
+  createdAt      DateTime?
+  updatedAt      DateTime?
   accounts       Account[]
   sessions       Session[]
 }
