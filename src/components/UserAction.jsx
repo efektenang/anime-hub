@@ -1,10 +1,9 @@
-// import { authUserSession } from "@/libs/auth-libs";
 'use client'
+
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 const UserAction = () => {
-  // const user = await authUserSession();
   const { data: session, status } = useSession()
   
   return (

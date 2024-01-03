@@ -1,11 +1,8 @@
 'use client'
 
 import { useSession } from "next-auth/react";
-// import { authUserSession } from "@/libs/auth-libs";
-
 
 export default function Profile() {
-  // const user = await authUserSession();
   const { data: session, status } = useSession()
   
   return (
